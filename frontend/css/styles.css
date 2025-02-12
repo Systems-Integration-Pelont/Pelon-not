@@ -1,0 +1,90 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Input y botones */
+input, button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+input {
+    background-color: #f9f9f9;
+}
+
+button {
+    background: #28a745;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #218838;
+}
+
+/* Botón de logout */
+.logout-btn {
+    background: #dc3545;
+}
+
+.logout-btn:hover {
+    background: #c82333;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #007bff;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}

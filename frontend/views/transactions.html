@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transacciones</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+    <script src="../js/transactions.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Transacciones</h2>
+        <button class="logout-btn" data-bind="click: logout">Cerrar Sesión</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>De Cuenta</th>
+                    <th>A Cuenta</th>
+                    <th>Monto</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: transactions">
+                <tr>
+                    <td data-bind="text: transactionId"></td>
+                    <td data-bind="text: fromAccountId"></td>
+                    <td data-bind="text: toAccountId"></td>
+                    <td data-bind="text: amount"></td>
+                    <td data-bind="text: transactionDes"></td>
+                    <td data-bind="text: formattedDate"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
