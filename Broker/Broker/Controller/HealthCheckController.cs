@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Broker.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/broker/[controller]")]
 public class HealthController : ControllerBase
 {
     private readonly ILogger<HealthController> _logger;

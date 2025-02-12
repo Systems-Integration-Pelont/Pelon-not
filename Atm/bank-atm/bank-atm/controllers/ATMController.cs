@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace bank_atm.controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/atm/[controller]")]
 public class AtmController: ControllerBase
 {
     [HttpGet("health")]

@@ -10,7 +10,7 @@ using MimeKit;
 namespace API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/pop3/[controller]")]
 public class Pop3Controller: ControllerBase
 {
     [HttpPost("sendMail")]
