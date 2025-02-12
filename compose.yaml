@@ -1,0 +1,87 @@
+services:
+  init-volume:
+    image: busybox
+    volumes:
+      - shared_data:/data
+      - ./local_data/images:/init/images:ro
+      - ./local_data/faces:/init/faces:ro
+    command: ['sh', '-c', 'cp -r /init/* /data/']
+    restart: 'no'
+
+  consul:
+    image: hashicorp/consul:1.20
+    container_name: bank.consul
+    command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
+    volumes:
+      - consul-data:/consul/data
+    ports:
+      - '8500:8500'
+    healthcheck:
+      test: ['CMD', 'consul', 'members']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  api.gateway:
+    image: api.gateway:latest
+    container_name: bank.api.gateway
+    build:
+      context: Api.Gateway/.
+      dockerfile: Dockerfile
+    ports:
+      - '9500:8080'
+    depends_on:
+      consul:
+        condition: service_healthy
+
+  authentication.service1:
+    image: authentication.service:latest
+    container_name: bank.authentication.service1
+    build:
+      context: Authentication.Api/.
+      dockerfile: Dockerfile
+    depends_on:
+      consul:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    volumes:
+      - shared_data:/app_data
+
+  face.recognition:
+    image: face.recognition:latest
+    container_name: bank.face.recognition
+    build:
+      context: Face.Recognition/.
+      dockerfile: Dockerfile
+    volumes:
+      - shared_data:/app_data
+
+  redis:
+    image: redislabs/redismod
+    container_name: bank.redis
+    volumes:
+      - redis-data:/data
+
+  postgres:
+    image: postgres:17
+    container_name: bank.postgres
+    environment:
+      - POSTGRES_DB=postgres-db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./local_data/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d postgres-db']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  shared_data:
+  consul-data:
+  redis-data:
+  postgres-data:

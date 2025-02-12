@@ -1,0 +1,67 @@
+services:
+  knockout.frontend:
+    ports:
+      - '80'
+
+  consul:
+    ports:
+      - '8500'
+
+  api.gateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+    ports:
+      - '8080'
+
+  authentication.service1:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ServiceDiscovery__Url=http://consul:8500
+      - ServiceDiscovery__Port=8080
+      - ServiceDiscovery__ApiHost=authentication.service1
+    ports:
+      - '8080'
+
+  bank.system1:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ServiceDiscovery__Url=http://consul:8500
+      - ServiceDiscovery__Port=8080
+      - ServiceDiscovery__ApiHost=bank.system1
+    ports:
+      - '8080'
+
+  broker.service1:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ServiceDiscovery__Url=http://consul:8500
+      - ServiceDiscovery__Port=8080
+      - ServiceDiscovery__ApiHost=broker.service1
+    ports:
+      - '8080'
+
+  atm.service1:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+    ports:
+      - '8080'
+
+  atm.service2:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+    ports:
+      - '8080'
+
+  redis:
+    ports:
+      - '6379'
+
+  postgres:
+    ports:
+      - '5432'

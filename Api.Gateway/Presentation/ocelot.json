@@ -1,0 +1,109 @@
+{
+  "Routes": [
+    {
+      "ServiceName": "AuthenticationService",
+      "SwaggerKey": "AuthenticationService",
+
+      "DownstreamPathTemplate": "/api/authentication/{everything}",
+      "UpstreamPathTemplate": "/api/authentication/{everything}",
+
+      "UpstreamHttpMethod": ["GET", "POST", "PUT", "DELETE", "PATCH"]
+    },
+    {
+      "ServiceName": "BankService",
+      "SwaggerKey": "BankService",
+
+      "DownstreamPathTemplate": "/api/bank/{everything}",
+      "UpstreamPathTemplate": "/api/bank/{everything}",
+
+      "UpstreamHttpMethod": ["GET", "POST", "PUT", "DELETE", "PATCH"],
+
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
+    },
+    {
+      "ServiceName": "BrokerService",
+      "SwaggerKey": "BrokerService",
+
+      "DownstreamPathTemplate": "/api/broker/{everything}",
+      "UpstreamPathTemplate": "/api/broker/{everything}",
+
+      "UpstreamHttpMethod": ["GET", "POST", "PUT", "DELETE", "PATCH"],
+
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
+    }
+  ],
+
+  "SwaggerEndPoints": [
+    {
+      "Key": "AuthenticationService",
+
+      "Config": [
+        {
+          "Name": "Authentication Microservice",
+          "Version": "v1",
+          "Service": {
+            "Name": "AuthenticationService",
+            "Path": "/swagger/v1/swagger.json"
+          }
+        }
+      ]
+    },
+    {
+      "Key": "BankService",
+
+      "Config": [
+        {
+          "Name": "BankService Microservice",
+          "Version": "v1",
+          "Service": {
+            "Name": "BankService",
+            "Path": "/swagger/v1/swagger.json"
+          }
+        }
+      ]
+    },
+    {
+      "Key": "BrokerService",
+
+      "Config": [
+        {
+          "Name": "BrokerService Microservice",
+          "Version": "v1",
+          "Service": {
+            "Name": "BrokerService",
+            "Path": "/swagger/v1/swagger.json"
+          }
+        }
+      ]
+    }
+  ],
+
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcelotRequestId",
+    "DownstreamScheme": "http",
+
+    "UseServiceDiscovery": true,
+    "RouteIsCaseSensitive": false,
+
+    "LoadBalancerOptions": {
+      "Type": "LeastConnection"
+    },
+
+    "QoSOptions": {
+      "ExceptionsAllowedBeforeBreaking": 3,
+      "DurationOfBreak": 5000,
+      "TimeoutValue": 2000
+    },
+
+    "ServiceDiscoveryProvider": {
+      "Host": "consul",
+      "Port": 8500,
+      "Type": "PollConsul",
+      "PollingInterval": 100
+    }
+  }
+}
