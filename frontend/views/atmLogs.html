@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs de ATMs</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+    <script src="../js/atmLogs.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Logs de ATMs</h2>
+        <button class="logout-btn" data-bind="click: logout">Cerrar Sesión</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ID ATM</th>
+                    <th>Error</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: atmLogs">
+                <tr>
+                    <td data-bind="text: logAtmId"></td>
+                    <td data-bind="text: atmId"></td>
+                    <td data-bind="text: errorMessage"></td>
+                    <td data-bind="text: date"></td>
+                    <td data-bind="text: time"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+FROM node:alpine
+
+WORKDIR /app
+
+COPY ../../frontend/ /app 
+
+RUN npm install -g http-server
+
+EXPOSE 5075
+
+CMD ["http-server", "/app", "-p", "5075"]

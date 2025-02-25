@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+    <script src="../js/login.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Iniciar Sesión</h2>
+        <input type="email" placeholder="Correo Electrónico" data-bind="value: email">
+        <input type="password" placeholder="Contraseña" data-bind="value: password">
+        <button data-bind="click: login">Iniciar Sesion</button>
+        <p class="error" data-bind="text: errorMessage, visible: errorMessage"></p>
+    </div>
+</body>
+</html>
