@@ -1,0 +1,21 @@
+# Git
+.git/
+
+# Jetbrains
+.idea/
+
+# ASP.NET
+bin/
+obj/
+packages/
+_ReSharper.Caches/
+node_modules/
+*.binlog
+*.DotSettings.user
+efbundle
+riderModule.iml
+
+# Python
+__pycache__/
+.idea/
+venv/
